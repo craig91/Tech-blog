@@ -1,12 +1,4 @@
-//BLOG POSTS:
-//Title of blog posts
-//Date posted
-//Blog post text
-//Categories/tags
-//Images for post
-//Comments on posts
-//Author of blog posts
-//archive: Boolean
+
 const mongoose = require('mongoose');
 const blogSchema = mongoose.Schema({
     title: {type: String, required: true},
