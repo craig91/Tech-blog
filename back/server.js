@@ -13,6 +13,10 @@ mongoose.connect('mongodb://localhost/blog-app-test');
 
 const db = mongoose.connection;
 
+
+
+
+
 db.on('open', () => {
     console.log('db connection opened!');
     app.listen(5555, () => {
@@ -25,12 +29,17 @@ db.on('open', () => {
 
 app.get('/', (req, res) => {
     res.send('hey from the craig page')
+    })
 });
 
 app.get('/posts', (req, res) => {
-    res.send('hey from the post page')
+    Post.find({}, (err, data) => {
+        res.send(data)
+    })
  });
-})
+
+
+
 
 Post.create({
   title: 'test post 1', 
@@ -45,11 +54,13 @@ Post.create({
 Comment.create({
     title: 'Comment here',
     author: 'User Name',
-    body: 'Enter Text Here',
-    comments: [{body: 'craig 1 luis 2 ', date: Date}],
+    body: 'Enter Text Here'
+    
+  
 
 },
 (err, data) => {
+  console.log(data)
   if(err) console.log('Error in Comment');
   else console.log('Comment created!');
 })
