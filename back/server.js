@@ -54,10 +54,9 @@ Post.create({
 Comment.create({
     title: 'Comment here',
     author: 'User Name',
-    body: 'Enter Text Here'
-    
-  
-
+    body: 'Enter Text Here',
+    comments: [{body: 'String'}],
+    hidden: Boolean,
 },
 (err, data) => {
   console.log(data)
