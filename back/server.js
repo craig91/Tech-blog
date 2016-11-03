@@ -1,10 +1,20 @@
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
+
+
 const postModel = require('./posts/posts-model')
 const Post = mongoose.model('Post');
 const commentModel = require('./comments/comment-model')
 const Comment = mongoose.model('Comment');
+const models = require('./index').models;
+const routes = require('./index').routes;
+
+
+// const path = require('path')
+// const rootPath = path.join(__dirname, '../../')
+// var bodyParser = require('body-parser');
+
 
 
 
@@ -18,12 +28,13 @@ const db = mongoose.connection;
 
 
 db.on('open', () => {
-    console.log('db connection opened!');
+    app.use('*', routes.home);
+    
     app.listen(5555, () => {
-    console.log('Listen on port 5555');
+   
     
     Post.find({}, (err, data) => {
-    console.log('Database data found!', data);
+    
     })
 });
 
